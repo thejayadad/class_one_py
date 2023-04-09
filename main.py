@@ -521,26 +521,32 @@ connection = sqlite3.connect('movies.db')
 
 cursor = connection.cursor()
 
-cursor.execute(''' CREATE TABLE IF NOT EXISTS Movies
-               (Title TEXT, Director TEXT, Year INT)''')
+# cursor.execute(''' CREATE TABLE IF NOT EXISTS Movies
+#                (Title TEXT, Director TEXT, Year INT)''')
 
-# #INSERT RECORD INTO DATABASE
-# cursor.execute("INSERT INTO Movies VALUES('Taxi Driver', 'Martin Lawrence', 2002)")
+# # #INSERT RECORD INTO DATABASE
+# # cursor.execute("INSERT INTO Movies VALUES('Taxi Driver', 'Martin Lawrence', 2002)")
 
-#RETRIEVE DATA
-cursor.execute("SELECT * FROM Movies")
-print(cursor.fetchone())
+# #RETRIEVE DATA
+# cursor.execute("SELECT * FROM Movies")
+# print(cursor.fetchone())
 
-#INSERT SEVERAL ITEMS TO DATABASE
-famousFilms = [('Friday', 'Chris Tucker', 1996),
-               ('Home Alone', 'Mcconneclly Colugin', 1992),
-               ('God Father', 'Al Pachino', 1971)]
+# #INSERT SEVERAL ITEMS TO DATABASE
+# famousFilms = [('Friday', 'Chris Tucker', 1996),
+#                ('Home Alone', 'Mcconneclly Colugin', 1992),
+#                ('God Father', 'Al Pachino', 1971)]
 
-#INSERT MORE THAN ONE ITEM INTO DATABASE
-cursor.executemany('Insert INTO Movies VALUES (?,?,?)', famousFilms)
-#SAVE INTO A VARIABLE
-records = cursor.execute("SELECT * FROM Movies")
-#FETCH ALL ITEMS
+# #INSERT MORE THAN ONE ITEM INTO DATABASE
+# cursor.executemany('Insert INTO Movies VALUES (?,?,?)', famousFilms)
+# #SAVE INTO A VARIABLE
+# records = cursor.execute("SELECT * FROM Movies")
+# #FETCH ALL ITEMS
+# print(cursor.fetchall())
+
+
+#FILTER RESULT BY ONLY MOVIES IN 1992
+release_year = (1992,)
+cursor.execute("SELECT * FROM Movies WHERE year=?", release_year)
 print(cursor.fetchall())
 
 #TO SAVE CHANGE _ COMMIT
